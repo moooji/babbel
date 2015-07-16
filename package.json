@@ -1,0 +1,36 @@
+{
+  "name": "babbel",
+  "version": "0.10.7",
+  "description": "Translation using Yandex API and optional promise interface.",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node --harmony main.js"
+  },
+  "engines": {
+    "node": ">=0.12.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moooji/babbel.git"
+  },
+  "keywords": [
+    "translation",
+    "yandex"
+  ],
+  "author": "Steffen Strätz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moooji/babbel/issues"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.33",
+    "custom-error-generator": "^7.0.0",
+    "lodash": "^3.9.3",
+    "request": "^2.58.0"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5"
+  }
+}
