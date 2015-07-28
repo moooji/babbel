@@ -17,7 +17,7 @@ function translation(apiKey) {
         return new InvalidArgumentError("No API key provided");
     }
 
-    /***
+    /**
      * Translates a given text.
      * Returns a promise or calls callback (if provided)
      * @param {String} text
