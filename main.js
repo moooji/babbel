@@ -95,7 +95,7 @@ function translation(apiKey) {
                     return reject(new ApiRequestError("API request failed", err));
                 }
 
-                if (response.statusCode !== 200) {
+                if (response.statusCode >= 400) {
                     return reject(new ApiRequestError("Status code %d indicates error", response.statusCode));
                 }
 

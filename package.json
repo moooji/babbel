@@ -1,10 +1,10 @@
 {
   "name": "babbel",
-  "version": "0.10.7",
+  "version": "0.10.8",
   "description": "Translation using Yandex API and optional promise interface.",
   "main": "main.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --harmony",
     "start": "node --harmony main.js"
   },
   "engines": {
