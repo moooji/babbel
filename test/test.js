@@ -2,7 +2,7 @@
 
 const babbel = require("../main");
 
-const apiKey = "trnsl.1.1.20150814T074627Z.ed7fe3ae3b0cffa7.7338c660735915a81b7666fb9f09ffe93a7a9688";
+const apiKey = "...";
 const translator = babbel.create({ apiKey: apiKey });
 
 const text = [
