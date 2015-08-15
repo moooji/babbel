@@ -1,7 +1,6 @@
 "use strict";
 
 const _ = require("lodash");
-
 const errors = require("./lib/errors");
 const TranslationProvider = require("./lib/translationProvider");
 
