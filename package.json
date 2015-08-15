@@ -1,6 +1,6 @@
 {
   "name": "babbel",
-  "version": "0.10.9",
+  "version": "0.10.12",
   "description": "Translation using Yandex API and optional promise interface.",
   "main": "main.js",
   "scripts": {

@@ -15,11 +15,14 @@ const ApiRequestError = errors.ApiRequestError;
  */
 function factory(options) {
 
-    if(!_.isString(options.apiKey)) {
+    if(!_.isString(options.yandex.apiKey)) {
         return new InvalidArgumentError("No API key provided");
     }
 
-    const apiKey = options.apiKey;
+    const apiKey = options.yandex.apiKey;
+
+    // TODO: This would create a Yandex (Google) provider
+    // and inject it into the TranslationProvider
 
     return new TranslationProvider(apiKey);
 }
