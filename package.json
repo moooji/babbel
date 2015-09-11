@@ -4,11 +4,11 @@
   "description": "Translation using Yandex API and optional promise interface.",
   "main": "main.js",
   "scripts": {
-    "test": "mocha --harmony",
-    "start": "node --harmony main.js"
+    "test": "mocha",
+    "start": "node main.js"
   },
   "engines": {
-    "node": ">=0.12.4"
+    "node": ">=4.0.0"
   },
   "repository": {
     "type": "git",
