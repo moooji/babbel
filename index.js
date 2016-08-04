@@ -1,5 +1,6 @@
 'use strict';
 
+const qs = require('qs');
 const is = require('valido');
 const axios = require('axios');
 const Bluebird = require('bluebird');
@@ -60,9 +61,12 @@ Babbel.prototype.translate = function(text, to, from) {
         url: '/translate',
         json: true,
         params: {
+          text,
           lang: from ? `${from}-${to}` : to,
-          text: text,
           key: this.apiKey,
+        },
+        paramsSerializer: function(params) {
+          return qs.stringify(params, { arrayFormat: 'repeat' })
         },
       };
 
