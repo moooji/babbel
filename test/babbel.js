@@ -37,6 +37,27 @@ describe('Babbel - Validation', () => {
   });
 });
 
+describe('Babbel - Settings', () => {
+  it('should set the API Key', () => {
+    const firstApiKey = 'abc';
+    const secondApiKey = 'xyz';
+    const translator = babbel.create({ apiKey: firstApiKey });
+
+    expect(translator.apiKey).to.equal(firstApiKey);
+
+    translator.setApiKey(secondApiKey);
+    expect(translator.apiKey).to.equal(secondApiKey);
+  });
+
+  it('should throw TypeError if ApiKey is invalid', () => {
+    const firstApiKey = 'abc';
+    const secondApiKey = 'xyz';
+    const translator = babbel.create({ apiKey: firstApiKey });
+
+    expect(translator.apiKey).to.equal(firstApiKey);
+    expect(() => translator.setApiKey(123)).to.throw(TypeError);
+  });
+});
 
 describe('Babbel - Translator', () => {
   it('should translate a string', () => {

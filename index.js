@@ -92,4 +92,12 @@ Babbel.prototype.translate = function(text, to, from) {
     });
 };
 
+Babbel.prototype.setApiKey = function setApiKey(apiKey) {
+  if (!is.string(apiKey)) {
+    throw new TypeError('Invalid API key');
+  }
+
+  this.apiKey = apiKey;
+}
+
 module.exports.create = create;
