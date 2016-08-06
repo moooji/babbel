@@ -1,10 +1,12 @@
 'use strict';
 
-const qs = require('qs');
 const is = require('valido');
 const axios = require('axios');
 const Bluebird = require('bluebird');
+const iso639 = require('./lib/iso639');
+const paramsSerializer = require('./lib/paramsSerializer');
 const createError = require('custom-error-generator');
+
 const langRegExp = new RegExp('^[a-z][a-z]-[a-z][a-z]$');
 
 /**
@@ -37,36 +39,38 @@ function Babbel(options) {
  * Translates a provided text string
  * Returns Promise or callback (if provided)
  * @param {String|Array<String>} text - Text
- * @param {String} to - Target language code
- * @param {String} [from] - Source language code
+ * @param {String} target - Target language code
+ * @param {String} [source] - Source language code
  * @returns {Promise}
  */
-Babbel.prototype.translate = function(text, to, from) {
+Babbel.prototype.translate = function(text, target, source) {
   return Promise.resolve()
     .then(() => {
       if (!is.string(text) && !is.all.string(text)) {
         throw new TypeError('Invalid text to translate');
       }
 
-      if (!is.string(to) || to.length !== 2) {
-        throw new TypeError('"To" options is not a 2 letter language code');
+      if (!is.string(target) || target.length < 2 || target.length > 3) {
+        throw new TypeError('"Target" is not a 2 or 3 letter language code');
       }
 
-      if (from && (!is.string(from) || from.length !== 2)) {
-        throw new TypeError('"From" options is not a 2 letter language code');
+      if (source && (!is.string(source) || source.length < 2 || source.length > 3)) {
+        throw new TypeError('"Source" is not a 2 or 3 letter language code');
       }
+
+      // Ensure ISO 639-1 language codes
+      const targetPart1 = iso639.ensurePart1(target, true);
+      const sourcePart1 = source ? iso639.ensurePart1(source, true) : null;
 
       const request = {
+        paramsSerializer,
         baseURL: this.apiUrl,
         url: '/translate',
         json: true,
         params: {
           text,
-          lang: from ? `${from}-${to}` : to,
+          lang: sourcePart1 ? `${sourcePart1}-${targetPart1}` : targetPart1,
           key: this.apiKey,
-        },
-        paramsSerializer: function(params) {
-          return qs.stringify(params, { arrayFormat: 'repeat' })
         },
       };
 
